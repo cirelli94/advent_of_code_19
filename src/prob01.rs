@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::prelude::*;
+use super::utils;
 
 fn module_fuel(mass: u32) -> u32 {
     mass / 3 - 2
@@ -13,20 +12,17 @@ fn total_fuel(modules: &[u32]) -> u32 {
 }
 
 fn load_modules(filename: &str) -> std::io::Result<Vec<u32>> {
-    let mut file = File::open(filename)?;
-    let mut buffer = String::new();
-    file.read_to_string(&mut buffer)?;
-
-    let numbers: Vec<u32> = buffer
-        .split_whitespace()
+    let numbers: Vec<u32> = utils::split_whitespace_file(filename)
+        .iter()
         .map(|x| x.parse::<u32>().unwrap())
         .collect();
 
     Ok(numbers)
 }
 
-pub fn resolve_problem() {
+pub fn resolve_problem() -> u32 {
     let modules = load_modules("./data/01.txt").unwrap();
     let fuel = total_fuel(&modules);
-    println!("{}", fuel);
+
+    fuel
 }

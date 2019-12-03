@@ -1,6 +1,7 @@
 mod prob01;
+mod utils;
 
 fn main() {
     println!("Hello, world!");
-    prob01::resolve_problem();
+    println!("{}", prob01::resolve_problem());
 }
