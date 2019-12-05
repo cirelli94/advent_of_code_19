@@ -1,4 +1,4 @@
-use super::utils;
+use crate::utils;
 
 fn calc_fuel(mass: u32) -> u32 {
     let mut fuel = 0;
@@ -27,10 +27,8 @@ fn load_modules(filename: &str) -> std::io::Result<Vec<u32>> {
     Ok(numbers)
 }
 
-pub fn resolve_problem() -> u32 {
+pub fn resolve() -> u32 {
     let modules = load_modules("./data/01.txt").unwrap();
 
-    let fuel = total_fuel(&modules);
-
-    fuel
+    total_fuel(&modules)
 }
